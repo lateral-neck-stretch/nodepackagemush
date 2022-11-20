@@ -19,3 +19,16 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+body {
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.bud_bounce {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
