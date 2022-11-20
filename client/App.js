@@ -18,6 +18,16 @@ import Routes from "./Routes";
 
 function App() {
   const animationRef = React.useRef(null);
+  // const jumpKeyframes = {
+  // scaleY: [
+  //   { value: 0.9, duration: 170 },
+  //   { value: 1, duration: 170, delay: 120 },
+  // ],
+  // translateY: [
+  //   { value: -20, duration: 170, delay: 170 },
+  //   { value: 0, duration: 170, delay: 220 },
+  // ],
+  // };
   React.useEffect(() => {
     animationRef.current = anime({
       targets: ".bud_bounce",
@@ -26,11 +36,21 @@ function App() {
       borderRadius: 50,
       // Property Parameters
       duration: 2000,
-      easing: "linear",
       // Animation Parameters
-      direction: "alternate",
+      // keyframes: [{ translateY: 2 }, { scaleY: 1.01 }],
+      scaleY: [
+        { value: 0.9, duration: 170, delay: 170 },
+        { value: 1.1, duration: 170, delay: 120 },
+      ],
+      translateY: [
+        { value: -20, duration: 170 },
+        { value: 0, duration: 170, delay: 120 },
+      ],
+
+      // direction: "alternate",
       loop: true,
-      scale: 1.2,
+      easing: "easeInOutElastic(1, 0.2)",
+      // scale: 1.01,
     });
   });
   return (
