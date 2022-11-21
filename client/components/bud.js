@@ -1,29 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import anime from "animejs/lib/anime.es.js";
-import { BudStage } from "./components/bud";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import history from "../history";
 
-import Navbar from "./components/Navbar";
-import Routes from "./Routes";
-
-/// counter ///
-let timeCounter = 2;
-
-function App() {
-  if (timeCounter > 0 && timeCounter < 1) {
-    return (
-      <div className="bud_bounce">
-        <BudStage />
-      </div>
-    );
-  } else if (timeCounter > 1) {
-    return <div className="test">meow!!!!</div>;
-  }
-}
-
-export default App;
-
-/*
-function App() {
+export function BudStage() {
   const animationRef = React.useRef(null);
   React.useEffect(() => {
     animationRef.current = anime({
@@ -59,4 +40,3 @@ function App() {
     </div>
   );
 }
-*/
