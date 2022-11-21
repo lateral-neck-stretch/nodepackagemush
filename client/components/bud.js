@@ -25,7 +25,7 @@ export function BudStage() {
         { value: 1, duration: 170 },
       ],
       translateY: [
-        { value: -20, duration: 170 },
+        { value: -5, duration: 170 },
         { value: 0, duration: 170, delay: 120 },
       ],
 
