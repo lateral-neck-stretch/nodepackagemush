@@ -7,6 +7,13 @@
   grid-column-start: 1;
   grid-row-start: 1;
 }
+.button{
+  transform: none;
+  user-select: none;
+  justify-self: center;
+  align-self: center;
+  background-color: none;
+}
 .start_text{
   font-size : 1.8em;
   user-select: none;
@@ -15,6 +22,8 @@
 svg{
   pointer-events: none;
   user-select: none;
+  justify-items: center;
+  align-items: center;
 }
 g{
   transform-origin: center center;

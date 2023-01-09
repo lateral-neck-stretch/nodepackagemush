@@ -18,30 +18,32 @@ function Home(props) {
 
   useEffect(() => {
     animation.current = anime.timeline({
-      // direction: 'alternate',
-      // loop: true,
       autoplay: false,
-      // easing: 'steps(1)',
-      scale: [
-        { value: 1.1, duration: 100 },
-        { value: 0.9, duration: 100 },
-        { value: 1.1, duration: 100 },
-        { value: 1, duration: 100 },
-      ],
     });
     animation.current
       .add({
         targets: `.${style.start_text}`,
-        duration: 200,
+        duration: 1,
         opacity: '0',
-        // easing: 'spring',
-        scale: [{ value: 0.3, duration: 100 }],
-        easing: 'easeInOutElastic(1,0.2)',
+      })
+      .add({
+        targets: `.${style.button}`,
+        height: 17.67,
+        width: 230,
+        backgroundColor: '#FFF',
+        opacity: '1',
+        duration: 1000,
+        easing: 'easeInOutQuad',
+      })
+      .add({
+        targets: '.button',
+        opacity: '0',
+        // scale: [{ value: 0.7, duration: 200 }],
       })
       .add({
         targets: `.${style.dot}`,
         opacity: '1',
-        duration: 200,
+        duration: 450,
       })
       .add({
         targets: `.${style.dot}`,
@@ -51,74 +53,76 @@ function Home(props) {
       .add({
         targets: `.${style.bubble1}`,
         opacity: '1',
-        duration: 200,
+        duration: 450,
         scale: [{ value: 0.7, duration: 200 }],
       })
       .add({
         targets: `.${style.bubble1}`,
         opacity: '0',
-        duration: 1,
+        duration: 100,
       })
       .add({
         targets: `.${style.bubble2}`,
         opacity: '1',
-        duration: 200,
+        duration: 450,
       })
       .add({
         targets: `.${style.bubble2}`,
         opacity: '0',
-        duration: 1,
+        duration: 100,
       })
       .add({
         targets: `.${style.bubble3}`,
         opacity: '1',
-        duration: 200,
-        easing: 'linear',
+        duration: 450,
       })
       .add({
         targets: `.${style.bubble3}`,
         opacity: '0',
-        duration: 1,
+        duration: 100,
       })
       .add({
         targets: `.${style.bubble4}`,
         opacity: '1',
-        duration: 200,
-        easing: 'linear',
+        duration: 450,
+        // scale: [
+        //   { value: 0.4, duration: 200 },
+        //   { value: 0.7, duration: 250 },
+        // ],
       })
       .add({
         targets: `.${style.bubble4}`,
         opacity: '0',
-        duration: 1,
+        duration: 100,
       })
       .add({
         targets: `.${style.pop1}`,
         opacity: '1',
-        duration: 200,
-        easing: 'linear',
+        duration: 450,
       })
       .add({
         targets: `.${style.pop1}`,
         opacity: '0',
-        duration: 1,
+        duration: 100,
       })
       .add({
         targets: `.${style.pop2}`,
         opacity: '1',
-        duration: 200,
-        easing: 'linear',
+        duration: 450,
       })
       .add({
         targets: `.${style.pop2}`,
         opacity: '0',
-        duration: 1,
+        duration: 100,
       });
   }, []);
 
   return (
     <div className={style.container}>
-      <div className={style.start_text} onClick={handleClick}>
-        Click here to start
+      <div className={style.button}>
+        <div className={style.start_text} onClick={handleClick}>
+          Click here to start
+        </div>
       </div>
 
       {/* SVG FILES */}
