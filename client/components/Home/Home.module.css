@@ -1,0 +1,64 @@
+.container{
+  display:grid;
+  justify-items: center;
+  align-items: center;
+}
+.container > * {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.start_text{
+  font-size : 1.8em;
+  user-select: none;
+  cursor:pointer;
+}
+svg{
+  pointer-events: none;
+  user-select: none;
+}
+g{
+  transform-origin: center center;
+  transform: scale(0.5,0.5);
+}
+.dot{
+  opacity:0;
+  fill: #FFFFFF;
+  pointer-events: none;
+  user-select: none;
+}
+.bubble1{
+  opacity:0;
+  fill: #FFFFFF;
+  pointer-events: none;
+  user-select: none;
+}
+.bubble2{
+  opacity:0;
+  fill: #FFFFFF;
+  pointer-events: none;
+  user-select: none;
+}
+.bubble3{
+  opacity:0;
+  fill: #FFFFFF;
+  pointer-events: none;
+  user-select: none;
+}
+.bubble4{
+  opacity:0;
+  fill: #FFFFFF;
+  pointer-events: none;
+  user-select: none;
+}
+.pop1{
+  opacity:0;
+  fill: #FFFFFF;
+  pointer-events: none;
+  user-select: none;
+}
+.pop2{
+  opacity:0;
+  fill: #FFFFFF;
+  user-select: none;
+  pointer-events: none;
+}
