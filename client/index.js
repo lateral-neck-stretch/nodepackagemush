@@ -12,8 +12,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       {/* <TimeStamp /> */}
-      <Home />
-      {/* <App /> */}
+      {/* <Home /> */}
+      <App />
     </Router>
   </Provider>,
   document.getElementById('app')

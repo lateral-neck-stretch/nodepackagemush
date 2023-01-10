@@ -1,12 +1,16 @@
 import anime from 'animejs/lib/anime.es.js';
 import React, { Component, useState, useRef, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import style from './Home.module.css';
-// import ReactAnime from 'react-animejs';
-// const { Anime, stagger } = ReactAnime;
+import Mush from '../../mush';
+import { authenticate } from '../../store';
+import { connect } from 'react-redux';
+import history from '../../history';
 
 function Home(props) {
   const [playing, setPlaying] = useState(false);
   const animation = useRef(null);
+  const { handleSubmit } = props;
 
   /**
    * for play/pause functionality, will want to take out in the end
@@ -19,6 +23,11 @@ function Home(props) {
   useEffect(() => {
     animation.current = anime.timeline({
       autoplay: false,
+      complete: function () {
+        console.log('done!');
+        window.localStorage.setItem('token', 'nice');
+        history.go('/');
+      },
     });
     animation.current
       .add({
@@ -32,13 +41,28 @@ function Home(props) {
         width: 230,
         backgroundColor: '#FFF',
         opacity: '1',
-        duration: 1000,
+        duration: 400,
         easing: 'easeInOutQuad',
       })
       .add({
-        targets: '.button',
+        targets: `.${style.button}`,
+        scaleX: [
+          { value: 1, duration: 100 },
+          { value: 0.2, duration: 900, delay: 100 },
+        ],
+        scaleY: [
+          { value: 1, duration: 100 },
+          { value: 0.25, duration: 900, delay: 100 },
+        ],
+        backgroundColor: '#FFF',
+        opacity: '1',
+        duration: 1000,
+        easing: 'steps(5)',
+      })
+      .add({
+        targets: `.${style.button}`,
         opacity: '0',
-        // scale: [{ value: 0.7, duration: 200 }],
+        easing: 'steps(1)',
       })
       .add({
         targets: `.${style.dot}`,
@@ -48,13 +72,13 @@ function Home(props) {
       .add({
         targets: `.${style.dot}`,
         opacity: '0',
-        scale: [{ value: 0.7, duration: 200 }],
+        // scale: [{ value: 0.7, duration: 200 }],
       })
       .add({
         targets: `.${style.bubble1}`,
         opacity: '1',
         duration: 450,
-        scale: [{ value: 0.7, duration: 200 }],
+        // scale: [{ value: 0.7, duration: 200 }],
       })
       .add({
         targets: `.${style.bubble1}`,
@@ -119,11 +143,15 @@ function Home(props) {
 
   return (
     <div className={style.container}>
-      <div className={style.button}>
-        <div className={style.start_text} onClick={handleClick}>
+      <form className={style.button} onSubmit={handleSubmit}>
+        <button
+          type='submit'
+          className={style.start_text}
+          onClick={handleClick}
+        >
           Click here to start
-        </div>
-      </div>
+        </button>
+      </form>
 
       {/* SVG FILES */}
       <svg
@@ -772,5 +800,13 @@ function Home(props) {
     </div>
   );
 }
-
-export default Home;
+const mapDispatch = (dispatch) => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault();
+      console.log('submitted!');
+      dispatch(authenticate());
+    },
+  };
+};
+export default withRouter(connect(null, mapDispatch)(Home));
