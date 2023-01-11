@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { BudStage } from './components/MushComponents/bud';
-import { BudStage2 } from './components/MushComponents/bud_stage2';
-import { BudStage3 } from './components/MushComponents/bud_stage3';
-import { BudStage4 } from './components/MushComponents/bud_stage4';
-import { MushStage0 } from './components/MushComponents/mush_stage0';
-import { MushStage1 } from './components/MushComponents/mush_stage1';
-import { MushStage2 } from './components/MushComponents/mush_stage2';
-import { MushStage3 } from './components/MushComponents/mush_stage3';
-import { MushStage4 } from './components/MushComponents/mush_stage4';
+import { BudStage } from '../MushComponents/bud';
+import { BudStage2 } from '../MushComponents/bud_stage2';
+import { BudStage3 } from '../MushComponents/bud_stage3';
+import { BudStage4 } from '../MushComponents/bud_stage4';
+import { MushStage0 } from '../MushComponents/mush_stage0';
+import { MushStage1 } from '../MushComponents/mush_stage1';
+import { MushStage2 } from '../MushComponents/mush_stage2';
+import { MushStage3 } from '../MushComponents/mush_stage3';
+import { MushStage4 } from '../MushComponents/mush_stage4';
 
 let start = Date.now();
 let currTime;
