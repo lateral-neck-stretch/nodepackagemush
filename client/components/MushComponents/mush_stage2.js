@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import anime from 'animejs/lib/anime.es.js';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import history from '../history';
+import history from '../../history';
 
-export function BudStage2() {
+export function MushStage2() {
   const animationRef = React.useRef(null);
   React.useEffect(() => {
     animationRef.current = anime({
-      targets: '.bud_stage2',
+      targets: '.mush_stage2',
       // Properties
       borderRadius: 50,
       // Property Parameters
@@ -35,8 +35,8 @@ export function BudStage2() {
     });
   });
   return (
-    <div className='bud_stage2'>
-      <img src='bud_stage2.svg' alt='bud stage2' />
+    <div className='mush_stage2'>
+      <img src='mush_stage2.svg' alt='mush_stage2' />
     </div>
   );
 }

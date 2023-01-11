@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { BudStage } from './components/bud';
-import { BudStage2 } from './components/bud_stage2';
-import { BudStage3 } from './components/bud_stage3';
-import { BudStage4 } from './components/bud_stage4';
-import { MushStage0 } from './components/mush_stage0';
-import { MushStage1 } from './components/mush_stage1';
-import { MushStage2 } from './components/mush_stage2';
-import { MushStage3 } from './components/mush_stage3';
-import { MushStage4 } from './components/mush_stage4';
+import { BudStage } from './components/MushComponents/bud';
+import { BudStage2 } from './components/MushComponents/bud_stage2';
+import { BudStage3 } from './components/MushComponents/bud_stage3';
+import { BudStage4 } from './components/MushComponents/bud_stage4';
+import { MushStage0 } from './components/MushComponents/mush_stage0';
+import { MushStage1 } from './components/MushComponents/mush_stage1';
+import { MushStage2 } from './components/MushComponents/mush_stage2';
+import { MushStage3 } from './components/MushComponents/mush_stage3';
+import { MushStage4 } from './components/MushComponents/mush_stage4';
 
 // import Navbar from './components/Navbar';
 
@@ -36,7 +36,7 @@ function Mush() {
   });
 
   // logging time elapsed
-  console.log(timeCounter);
+  // console.log(timeCounter);
 
   if (timeCounter >= 0 && timeCounter < 35) {
     return (

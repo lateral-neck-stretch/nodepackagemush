@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Mush from './mush';
-import Home from './components/Home/Home';
-import { me } from './store';
+import Mush from '../../Mush';
+import Home from '../Home/Home';
+import { me } from '../../store';
+import style from './App.module.css';
+import ResetButton from '../resetButton/ResetButton';
 
 function App() {
   const init = !!window.localStorage.getItem('token');
   console.log(init);
-  return <div>{init ? <Mush /> : <Home />}</div>;
+  return (
+    <div className={style.container}>
+      <div className={style.appWrapper}>{init ? <Mush /> : <Home />}</div>
+      <ResetButton className={style.ResetButton} />
+    </div>
+  );
 }
 
 // const mapState = (state) => {

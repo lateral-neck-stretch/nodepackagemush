@@ -2,7 +2,7 @@ import anime from 'animejs/lib/anime.es.js';
 import React, { Component, useState, useRef, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import style from './Home.module.css';
-import Mush from '../../mush';
+import Mush from '../../Mush';
 import { authenticate } from '../../store';
 import { connect } from 'react-redux';
 import history from '../../history';
@@ -141,6 +141,12 @@ function Home(props) {
       });
   }, []);
 
+  /**
+   *
+   * JSX CODE
+   *
+   */
+
   return (
     <div className={style.container}>
       <form className={style.button} onSubmit={handleSubmit}>
@@ -153,7 +159,11 @@ function Home(props) {
         </button>
       </form>
 
-      {/* SVG FILES */}
+      {/*
+       **********************************
+       *** SVGS FOR OPENING ANIMATION ***
+       **********************************
+       */}
       <svg
         className={style.svg}
         xmlns='http://www.w3.org/2000/svg'

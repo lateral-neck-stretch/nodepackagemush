@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import anime from "animejs/lib/anime.es.js";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import history from "../history";
+import React, { Component } from 'react';
+import anime from 'animejs/lib/anime.es.js';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import history from '../../history';
 
-export function MushStage3() {
+export function MushStage4() {
   const animationRef = React.useRef(null);
   React.useEffect(() => {
     animationRef.current = anime({
-      targets: ".mush_stage3",
+      targets: '.mush_stage4',
       // Properties
       borderRadius: 50,
       // Property Parameters
@@ -30,13 +30,13 @@ export function MushStage3() {
       ],
 
       loop: true,
-      easing: "easeInOutElastic(1, 0.2)",
+      easing: 'easeInOutElastic(1, 0.2)',
       // scale: 1.01,
     });
   });
   return (
-    <div className="mush_stage3">
-      <img src="mush_stage3.svg" alt="mush_stage3" />
+    <div className='mush_stage4'>
+      <img src='mush_stage4.svg' alt='mush_stage4' />
     </div>
   );
 }

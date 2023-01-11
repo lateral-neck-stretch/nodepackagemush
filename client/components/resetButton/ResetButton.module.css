@@ -1,0 +1,22 @@
+.resetButton{
+  fill:white;
+  transform-origin: center center;
+  transform: scale(0.4 , 0.4);
+  position:absolute;
+  top:275px;
+  z-index:9999;
+  align-items: center;
+  justify-items: center;
+}
+.resetText{
+  font-size : 3em;
+  user-select: none;
+  text-align:center;
+}
+.button{
+  transform: none;
+  user-select: none;
+  justify-self: center;
+  align-self: center;
+  background-color: none;
+}
