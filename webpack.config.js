@@ -1,14 +1,28 @@
+'use strict';
+const path = require('path');
+const webpack = require('webpack');
+
 module.exports = {
   entry: ['./client/index.js'],
   output: {
-    path: __dirname,
-    filename: './public/bundle.js',
+    path: path.resolve(__dirname, 'public'),
+    filename: 'bundle.js',
+    publicPath: '/',
   },
+  mode: 'development',
+  plugins: [
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser.js',
+    }),
+  ],
   devtool: 'source-map',
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx|ts|tsx|png)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {

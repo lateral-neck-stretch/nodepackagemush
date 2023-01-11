@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Mush from '../../Mush';
+import Mush from '../../Mush.js';
 import Home from '../Home/Home';
 import { me } from '../../store';
 import style from './App.module.css';
@@ -18,6 +18,8 @@ function App() {
   );
 }
 
+export default App;
+
 // const mapState = (state) => {
 //   return {
 //     init: !!window.localStorage.getItem('token'),
@@ -31,5 +33,3 @@ function App() {
 //     },
 //   };
 // };
-
-export default App;

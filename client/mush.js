@@ -9,10 +9,6 @@ import { MushStage2 } from './components/MushComponents/mush_stage2';
 import { MushStage3 } from './components/MushComponents/mush_stage3';
 import { MushStage4 } from './components/MushComponents/mush_stage4';
 
-// import Navbar from './components/Navbar';
-
-/// counter ///
-
 let start = Date.now();
 let currTime;
 let timeElapsed;
