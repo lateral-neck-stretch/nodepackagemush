@@ -1,5 +1,5 @@
 {
-  "name": "stackathon",
+  "name": "pocket_mush",
   "version": "2.0.0",
   "description": "a lil mushroom",
   "main": "index.js",
@@ -30,7 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "pg": "^8.5.1",
-    "react-animejs":"^0.5.6",
+    "react-animejs": "^0.5.6",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {

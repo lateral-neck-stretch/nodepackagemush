@@ -12,7 +12,6 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       {/* <TimeStamp /> */}
-      {/* <Home /> */}
       <App />
     </Router>
   </Provider>,
