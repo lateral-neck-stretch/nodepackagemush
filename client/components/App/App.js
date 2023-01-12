@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Mush from '../Mush/Mush';
+import Mush from '../Mush/KingOyster';
 import Home from '../Home/Home';
 import { me } from '../../store';
 import style from './App.module.css';

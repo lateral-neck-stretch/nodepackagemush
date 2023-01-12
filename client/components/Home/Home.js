@@ -2,7 +2,7 @@ import anime from 'animejs/lib/anime.es.js';
 import React, { Component, useState, useRef, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import style from './Home.module.css';
-import Mush from '../Mush/Mush';
+import Mush from '../Mush/KingOyster';
 import { authenticate } from '../../store';
 import { connect } from 'react-redux';
 import history from '../../history';
