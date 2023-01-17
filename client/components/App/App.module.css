@@ -1,14 +1,14 @@
 .container{
-  display:grid;
+  /* display:grid; */
   justify-items: center;
   align-items: center;
   position:relative;
 }
-.container > * {
+/* .container > * {
   grid-column-start: 1;
   grid-row-start: 1;
   position:relative;
-}
+} */
 .appWrapper{
   display: inline-block; /* shrink to fit */
   width: 100%;           /* whatever width you like */
