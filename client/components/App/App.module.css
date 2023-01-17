@@ -14,6 +14,9 @@
   width: 100%;           /* whatever width you like */
   position: relative;    /* so .content can use position: absolute */
 }
+.content{
+  position:absolute;
+}
 .ResetButton{
   position:absolute;
   top:100px

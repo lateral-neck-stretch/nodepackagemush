@@ -12,7 +12,13 @@ function App() {
   console.log(init);
   return (
     <div className={style.container}>
-      <div className={style.appWrapper}>{init ? <Mush /> : <Home />}</div>
+      <div className={style.appWrapper}>
+        {init ? (
+          <Mush className={style.content} />
+        ) : (
+          <Home className={style.content} />
+        )}
+      </div>
       <ResetButton className={style.ResetButton} />
     </div>
   );
