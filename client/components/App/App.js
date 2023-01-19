@@ -19,7 +19,9 @@ function App() {
           <Home className={style.content} />
         )}
       </div>
-      <ResetButton className={style.ResetButton} />
+      <div className={style.ResetButton}>
+        <ResetButton />
+      </div>
     </div>
   );
 }

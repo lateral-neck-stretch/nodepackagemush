@@ -1,14 +1,14 @@
 .container{
-  /* display:grid; */
-  justify-items: center;
+  justify-content: center;
   align-items: center;
   position:relative;
+  grid-area:main_content;
+  white-space: nowrap;
+
+  display:flex;
+  height: 100%;
+  width: 100%
 }
-/* .container > * {
-  grid-column-start: 1;
-  grid-row-start: 1;
-  position:relative;
-} */
 .button{
   transform: none;
   user-select: none;

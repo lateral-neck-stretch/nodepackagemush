@@ -1,18 +1,18 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
 body {
   font-family: 'VT323', monospace;
   color: white;
   background-color: #000000;
-  display: grid;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  margin:0;
-  height: 100vh;
 }
 a {
   text-decoration: none;
 }
-
 nav a {
   display: inline-block;
   margin: 1em;
