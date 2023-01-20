@@ -1,8 +1,8 @@
 .container{
-  display:grid;
   justify-items: center;
   align-items: center;
   position:relative;
+  display: contents;
 }
 .container > * {
   grid-column-start: 1;
@@ -10,14 +10,17 @@
   position:relative;
 }
 .appWrapper{
-  display: inline-block; /* shrink to fit */
+  grid-row-start: 2;
+  display: flex; /* shrink to fit */
   width: 100%;           /* whatever width you like */
-  position: relative;    /* so .content can use position: absolute */
+  position: relative;
+  justify-content: center;    /* so .content can use position: absolute */
 }
 .content{
   position:absolute;
 }
 .ResetButton{
   position:absolute;
-  top:100px
+  top:100px;
+  display: contents;
 }

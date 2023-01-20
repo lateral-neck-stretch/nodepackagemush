@@ -3,6 +3,7 @@ body {
   color: white;
   background-color: #000000;
   display: grid;
+  grid-template-rows: 150px auto 150px;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
@@ -87,8 +88,6 @@ form div {
   justify-content:center;
 
 }
-div #time {
-  color: antiquewhite;
-  display: flex;
-  text-align:center;
+div#app {
+  display:contents;
 }

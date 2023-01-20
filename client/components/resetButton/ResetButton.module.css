@@ -2,11 +2,10 @@
   fill:white;
   transform-origin: center center;
   transform: scale(0.4 , 0.4);
-  position:absolute;
-  top:275px;
   z-index:9999;
   align-items: center;
   justify-items: center;
+  grid-row-start: 3;
 }
 .resetText{
   font-size : 3em;
