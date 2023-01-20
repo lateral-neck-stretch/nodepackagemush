@@ -24,15 +24,12 @@ function Mush() {
       currTime = Date.now();
       timeElapsed = 1; //TO-DO: make actual time elapsed s
       setTime((timeCounter) => timeCounter + 1);
-    }, 1000);
+    }, 4000);
 
     return () => {
       clearInterval(interval);
     };
   });
-
-  // logging time elapsed
-  // console.log(timeCounter);
 
   if (timeCounter >= 0 && timeCounter < 35) {
     return (
@@ -88,8 +85,14 @@ function Mush() {
         <MushStage4 />
       </div>
     );
-  } else if (timeCounter == 229) {
-    return <div>{(timeCounter = 0)}</div>;
+  } else if (timeCounter >= 229) {
+    return (
+      <div>
+        <div className='mush_stage4'>
+          <MushStage4 />
+        </div>
+      </div>
+    );
   }
 }
 

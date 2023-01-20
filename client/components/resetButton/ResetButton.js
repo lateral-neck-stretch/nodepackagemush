@@ -1,4 +1,3 @@
-import anime from 'animejs/lib/anime.es.js';
 import React, { Component, useState, useRef, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import style from './ResetButton.module.css';

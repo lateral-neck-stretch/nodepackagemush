@@ -2,7 +2,6 @@ import anime from 'animejs/lib/anime.es.js';
 import React, { Component, useState, useRef, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import style from './Home.module.css';
-import Mush from '../Mush/KingOyster';
 import { authenticate } from '../../store';
 import { connect } from 'react-redux';
 import history from '../../history';
@@ -44,6 +43,9 @@ function Home(props) {
         duration: 400,
         easing: 'easeInOutQuad',
       })
+      /**
+       * BAR FLATTENING OUT
+       */
       .add({
         targets: `.${style.button}`,
         scaleY: [
@@ -55,16 +57,19 @@ function Home(props) {
         duration: 1000,
         easing: 'linear',
       })
+      /**
+       * BAR SHRINKING
+       */
       .add({
         targets: `.${style.button}`,
         scaleX: [
           { value: 1, duration: 100 },
-          { value: 0.2, duration: 900, delay: 100 },
+          { value: 0.01, duration: 900, delay: 100 },
         ],
         backgroundColor: '#FFF',
         opacity: '1',
-        duration: 1000,
-        easing: 'steps(5)',
+        duration: 1500,
+        easing: 'cubicBezier(0.550, 0.055, 0.675, 0.190)',
       })
       .add({
         targets: `.${style.button}`,
@@ -85,7 +90,6 @@ function Home(props) {
         targets: `.${style.bubble1}`,
         opacity: '1',
         duration: 450,
-        // scale: [{ value: 0.7, duration: 200 }],
       })
       .add({
         targets: `.${style.bubble1}`,
