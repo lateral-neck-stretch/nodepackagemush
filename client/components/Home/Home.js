@@ -46,13 +46,20 @@ function Home(props) {
       })
       .add({
         targets: `.${style.button}`,
-        scaleX: [
-          { value: 1, duration: 100 },
-          { value: 0.2, duration: 900, delay: 100 },
-        ],
         scaleY: [
           { value: 1, duration: 100 },
           { value: 0.25, duration: 900, delay: 100 },
+        ],
+        backgroundColor: '#FFF',
+        opacity: '1',
+        duration: 1000,
+        easing: 'linear',
+      })
+      .add({
+        targets: `.${style.button}`,
+        scaleX: [
+          { value: 1, duration: 100 },
+          { value: 0.2, duration: 900, delay: 100 },
         ],
         backgroundColor: '#FFF',
         opacity: '1',

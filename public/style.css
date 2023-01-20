@@ -80,8 +80,8 @@ form div {
   justify-content: center;
 }
 .mush_stage4{
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   /* transform: scale(10); */
   display:flex;
   align-items: center;
