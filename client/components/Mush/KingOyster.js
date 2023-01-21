@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { DATEONLY } from 'sequelize';
 import { BudStage } from '../MushComponents/bud';
 import { BudStage2 } from '../MushComponents/bud_stage2';
 import { BudStage3 } from '../MushComponents/bud_stage3';
@@ -12,24 +13,33 @@ import { MushStage4 } from '../MushComponents/mush_stage4';
 let start = Date.now();
 let currTime;
 let timeElapsed;
-console.log('curr date', start);
+// console.log('curr date', start);
 
 function Mush() {
   const [timeCounter, setTime] = useState(0);
 
-  React.useEffect(() => {
-    let interval = null;
+  // React.useEffect(() => {
+  //   let interval = null;
 
-    interval = setInterval(() => {
-      currTime = Date.now();
-      timeElapsed = 1; //TO-DO: make actual time elapsed s
-      setTime((timeCounter) => timeCounter + 1);
-    }, 4000);
+  //   function reset() {
+  //     localStorage.startTime = +new Date();
+  //   }
+  //   if (!localStorage.startTime) {
+  //     reset();
+  //   }
+  //   interval = setInterval(() => {
+  //     // timeElapsed = 1; //TO-DO: make actual time elapsed s
+  //     timeElapsed = new Date() - localStorage.startTime;
+  //     if (timeElapsed >= 0) {
+  //       timeCounter += 1;
+  //       console.log('time in sec', timeCounter);
+  //     }
+  //   }, 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  });
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // });
 
   if (timeCounter >= 0 && timeCounter < 35) {
     return (
