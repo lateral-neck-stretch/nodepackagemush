@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DATEONLY } from 'sequelize';
+
 import { BudStage } from '../MushComponents/bud';
 import { BudStage2 } from '../MushComponents/bud_stage2';
 import { BudStage3 } from '../MushComponents/bud_stage3';
@@ -10,92 +10,75 @@ import { MushStage2 } from '../MushComponents/mush_stage2';
 import { MushStage3 } from '../MushComponents/mush_stage3';
 import { MushStage4 } from '../MushComponents/mush_stage4';
 
-let start = Date.now();
-let currTime;
-let timeElapsed;
-// console.log('curr date', start);
+function Mush(props) {
+  const { timeCounter } = props; //timeCounter coming in as seconds elapsed
+  const [time, setTime] = useState(0);
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
 
-function Mush() {
-  const [timeCounter, setTime] = useState(0);
+  React.useEffect(() => {
+    setMinutes(Math.floor(timeCounter / 60));
+    setHours(Math.floor(minutes / 60));
+    setDays(Math.floor(hours / 24));
+    setTime(minutes);
+  });
 
-  // React.useEffect(() => {
-  //   let interval = null;
-
-  //   function reset() {
-  //     localStorage.startTime = +new Date();
-  //   }
-  //   if (!localStorage.startTime) {
-  //     reset();
-  //   }
-  //   interval = setInterval(() => {
-  //     // timeElapsed = 1; //TO-DO: make actual time elapsed s
-  //     timeElapsed = new Date() - localStorage.startTime;
-  //     if (timeElapsed >= 0) {
-  //       timeCounter += 1;
-  //       console.log('time in sec', timeCounter);
-  //     }
-  //   }, 1000);
-
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // });
-
-  if (timeCounter >= 0 && timeCounter < 35) {
+  if (time >= 0 && time < 35) {
     return (
       <div className='bud_bounce'>
         <BudStage />
       </div>
     );
-  } else if (timeCounter >= 35 && timeCounter < 62) {
+  } else if (time >= 35 && time < 62) {
     return (
       <div className='bud_stage2'>
         <BudStage2 />
       </div>
     );
-  } else if (timeCounter >= 62 && timeCounter < 77) {
+  } else if (time >= 62 && time < 77) {
     return (
       <div className='bud_stage3'>
         <BudStage3 />
       </div>
     );
-  } else if (timeCounter >= 77 && timeCounter < 97) {
+  } else if (time >= 77 && time < 97) {
     return (
       <div className='bud_stage4'>
         <BudStage4 />
       </div>
     );
-  } else if (timeCounter >= 97 && timeCounter < 123) {
+  } else if (time >= 97 && time < 123) {
     return (
       <div className='mush_stage0'>
         <MushStage0 />
       </div>
     );
-  } else if (timeCounter >= 123 && timeCounter < 130) {
+  } else if (time >= 123 && time < 130) {
     return (
       <div className='mush_stage1'>
         <MushStage1 />
       </div>
     );
-  } else if (timeCounter >= 130 && timeCounter < 162) {
+  } else if (time >= 130 && time < 162) {
     return (
       <div className='mush_stage2'>
         <MushStage2 />
       </div>
     );
-  } else if (timeCounter >= 162 && timeCounter < 194) {
+  } else if (time >= 162 && time < 194) {
     return (
       <div className='mush_stage3'>
         <MushStage3 />
       </div>
     );
-  } else if (timeCounter >= 194 && timeCounter < 229) {
+  } else if (time >= 194 && time < 229) {
     return (
       <div className='mush_stage4'>
         <MushStage4 />
       </div>
     );
-  } else if (timeCounter >= 229) {
+  } else if (time >= 229) {
     return (
       <div>
         <div className='mush_stage4'>

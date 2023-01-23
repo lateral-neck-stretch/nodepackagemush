@@ -6,6 +6,7 @@ import history from '../../history';
 function ResetButton(props) {
   const handleClick = () => {
     window.localStorage.removeItem('token');
+    window.localStorage.removeItem('startTime');
     history.go('/');
     console.log('removed');
   };

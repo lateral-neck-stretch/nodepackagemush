@@ -12,6 +12,28 @@ function Home(props) {
   const { handleSubmit } = props;
 
   /**
+   * get location
+   */
+
+  function savePosition(position) {
+    const long = position.coords.longitude;
+    window.localStorage.setItem('long', long);
+
+    const lat = position.coords.latitude;
+    window.localStorage.setItem('lat', lat);
+
+    console.log('COORDS :', long, lat);
+  }
+
+  const errorCallback = (error) => {
+    window.localStorage.setItem('long', 90);
+
+    window.localStorage.setItem('lat', 90);
+
+    console.log('ERROR', error);
+  };
+
+  /**
    * for play/pause functionality, will want to take out in the end
    */
   const handleClick = () => {
@@ -24,6 +46,7 @@ function Home(props) {
       autoplay: false,
       complete: function () {
         console.log('done!');
+        navigator.geolocation.getCurrentPosition(savePosition, errorCallback);
         window.localStorage.setItem('token', 'nice');
         history.go('/');
       },

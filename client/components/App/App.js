@@ -8,15 +8,59 @@ import style from './App.module.css';
 import ResetButton from '../resetButton/ResetButton';
 import InfoBox from '../InfoBox/InfoBox';
 
+const time = {
+  seconds: 1000,
+  minutes: 60000,
+};
+let timeElapsed;
+
+/**
+ * LOCATION
+ */
+
 function App() {
   const init = !!window.localStorage.getItem('token');
-  console.log(init);
+  const [timeCounter, setTimeCounter] = useState(0);
+
+  React.useEffect(() => {
+    /**
+     * LOCATION
+     */
+
+    /**
+     * INIT TIMER
+     */
+    let interval = null;
+
+    function reset() {
+      localStorage.startTime = +new Date();
+    }
+    if (init && !localStorage.startTime) {
+      reset();
+    }
+    interval = setInterval(() => {
+      timeElapsed = new Date() - localStorage.startTime;
+      if (timeElapsed >= 0) {
+        setTimeCounter(Math.floor(timeElapsed / time.seconds)); // set to seconds
+        // console.log('time in sec', timeCounter);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
+
   return (
     <div className={style.container}>
-      {init ? <InfoBox className={style.InfoBox} /> : <></>}
+      {init ? (
+        <InfoBox className={style.InfoBox} timeCounter={timeCounter} />
+      ) : (
+        <></>
+      )}
       <div className={style.appWrapper}>
         {init ? (
-          <Mush className={style.content} />
+          <Mush className={style.content} timeCounter={timeCounter} />
         ) : (
           <Home className={style.content} />
         )}
