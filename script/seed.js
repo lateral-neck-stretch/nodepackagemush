@@ -14,7 +14,7 @@ async function seed() {
   console.log('db synced!');
 
   // Creating Users
-  const users = await Promise.all([
+  const mushes = await Promise.all([
     Mush.create({
       name: 'KingOyster',
       minLat: -90,

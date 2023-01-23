@@ -1,6 +1,7 @@
 'use strict';
 const path = require('path');
 const webpack = require('webpack');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 require('dotenv').config();
 
 module.exports = {
@@ -18,6 +19,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: 'process/browser.js',
     }),
+    new NodePolyfillPlugin(),
   ],
   devtool: 'source-map',
   module: {
