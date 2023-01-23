@@ -4,7 +4,7 @@ import style from './InfoBox.module.css';
 import history from '../../history';
 
 function InfoBox(props) {
-  const { timeCounter } = props; // timeCounter coming in as seconds elapsed
+  const { timeCounter, mushType } = props; // timeCounter coming in as seconds elapsed
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -33,7 +33,7 @@ function InfoBox(props) {
   return (
     <div className={style.infoBox}>
       <p>
-        mushroom_type: <br></br>
+        mushroom_type: {mushType} <br></br>
         mushroom_age: {days} days {hours} hours {minutes} minutes {seconds}{' '}
         seconds
       </p>

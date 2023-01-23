@@ -14,8 +14,10 @@ const time = {
 };
 let timeElapsed;
 
+const mushType = 'KingOyster'; // TO-DO : replace with mushtype from db call
+
 /**
- * LOCATION
+ * TO-DO : LOCATION
  */
 
 function App() {
@@ -54,7 +56,11 @@ function App() {
   return (
     <div className={style.container}>
       {init ? (
-        <InfoBox className={style.InfoBox} timeCounter={timeCounter} />
+        <InfoBox
+          className={style.InfoBox}
+          timeCounter={timeCounter}
+          mushType={mushType}
+        />
       ) : (
         <></>
       )}
