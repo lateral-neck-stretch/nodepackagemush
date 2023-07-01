@@ -7,6 +7,9 @@ function ResetButton(props) {
   const handleClick = () => {
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('startTime');
+    window.localStorage.removeItem('currentAge');
+    window.localStorage.removeItem('prevTime');
+
     history.go('/');
     console.log('removed');
   };

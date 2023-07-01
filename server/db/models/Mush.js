@@ -12,6 +12,10 @@ const Mush = db.define('mush', {
     unique: true,
     allowNull: false,
   },
+  hoursToMaturity: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
   minLat: {
     type: Sequelize.FLOAT,
     allowNull: false,

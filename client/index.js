@@ -5,13 +5,10 @@ import { Router } from 'react-router-dom';
 import history from './history';
 import store from './store';
 import App from './components/App/App';
-import Home from './components/Home/Home';
-import TimeStamp from './components/TimeStamp';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      {/* <TimeStamp /> */}
       <App />
     </Router>
   </Provider>,

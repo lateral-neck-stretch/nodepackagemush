@@ -33,9 +33,10 @@ function InfoBox(props) {
   return (
     <div className={style.infoBox}>
       <p>
-        mushroom_type: {mushType} <br></br>
+        mushroom_type: {mushType} <br />
         mushroom_age: {days} days {hours} hours {minutes} minutes {seconds}{' '}
-        seconds
+        seconds <br />
+        time_to_maturity:
       </p>
     </div>
   );

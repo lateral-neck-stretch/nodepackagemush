@@ -17,6 +17,7 @@ async function seed() {
   const mushes = await Promise.all([
     Mush.create({
       name: 'KingOyster',
+      hoursToMaturity: 229,
       minLat: -90,
       maxLat: 90,
       minLong: -180,
@@ -25,7 +26,6 @@ async function seed() {
   ]);
 
   console.log(`seeded mush`);
-  console.log(`seeded successfully`);
 }
 
 /*

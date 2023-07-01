@@ -47,7 +47,7 @@ function Home(props) {
       complete: function () {
         console.log('done!');
         navigator.geolocation.getCurrentPosition(savePosition, errorCallback);
-        window.localStorage.setItem('token', 'nice');
+        window.localStorage.setItem('token', 'token');
         history.go('/');
       },
     });

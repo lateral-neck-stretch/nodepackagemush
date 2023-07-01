@@ -12,7 +12,6 @@ const time = {
   seconds: 1000,
   minutes: 60000,
 };
-let timeElapsed;
 
 const mushType = 'KingOyster'; // TO-DO : replace with mushtype from db call
 
@@ -23,35 +22,49 @@ const mushType = 'KingOyster'; // TO-DO : replace with mushtype from db call
 function App() {
   const init = !!window.localStorage.getItem('token');
   const [timeCounter, setTimeCounter] = useState(0);
+  const [timeMultiplier, setTimeMultiplier] = useState(10);
 
-  React.useEffect(() => {
-    /**
-     * LOCATION
-     */
-
-    /**
-     * INIT TIMER
-     */
-    let interval = null;
-
+  useEffect(() => {
     function reset() {
-      localStorage.startTime = +new Date();
+      const startTime = +new Date();
+      const prevTime = startTime - 1000;
+      localStorage.setItem('startTime', startTime);
+      localStorage.setItem('prevTime', prevTime);
+      localStorage.setItem('currentAge', timeCounter);
     }
     if (init && !localStorage.startTime) {
       reset();
     }
-    interval = setInterval(() => {
-      timeElapsed = new Date() - localStorage.startTime;
-      if (timeElapsed >= 0) {
-        setTimeCounter(Math.floor(timeElapsed / time.seconds)); // set to seconds
-        // console.log('time in sec', timeCounter);
-      }
-    }, 1000);
+  }, []);
 
-    return () => {
-      clearInterval(interval);
-    };
-  });
+  useEffect(() => {
+    if (init && localStorage.startTime) {
+      const currentTime = +new Date();
+      const currentAge = localStorage.getItem('currentAge');
+      const prevTime = localStorage.getItem(`prevTime`);
+      const step = currentTime - prevTime; // should be 1000 if the app has been running continuously
+
+      console.log(`step is ${step}`);
+
+      const timeElapsed = Math.floor((timeMultiplier * step) / time.seconds);
+      console.log(`time added is ${timeElapsed}`);
+
+      const interval = setInterval(() => {
+        const newAge = Math.round(+currentAge + timeElapsed);
+        setTimeCounter(newAge); // set to seconds
+        localStorage.setItem('currentAge', newAge);
+
+        console.log(`timeCounter / currentAge is ${timeCounter}`);
+        console.log(`timeElapsed is ${timeElapsed}`);
+      }, 1000);
+
+      localStorage.setItem('prevTime', currentTime);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [timeCounter, timeMultiplier]);
 
   return (
     <div className={style.container}>
