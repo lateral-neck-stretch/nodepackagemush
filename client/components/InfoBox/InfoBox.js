@@ -38,6 +38,9 @@ function InfoBox(props) {
         seconds <br />
         time_to_maturity:
       </p>
+      <div>
+        <p></p>
+      </div>
     </div>
   );
 }

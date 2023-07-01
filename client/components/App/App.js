@@ -22,7 +22,7 @@ const mushType = 'KingOyster'; // TO-DO : replace with mushtype from db call
 function App() {
   const init = !!window.localStorage.getItem('token');
   const [timeCounter, setTimeCounter] = useState(0);
-  const [timeMultiplier, setTimeMultiplier] = useState(10);
+  const [timeMultiplier, setTimeMultiplier] = useState(1);
 
   useEffect(() => {
     function reset() {
@@ -42,20 +42,14 @@ function App() {
       const currentTime = +new Date();
       const currentAge = localStorage.getItem('currentAge');
       const prevTime = localStorage.getItem(`prevTime`);
-      const step = currentTime - prevTime; // should be 1000 if the app has been running continuously
-
-      console.log(`step is ${step}`);
+      const step = currentTime - prevTime;
 
       const timeElapsed = Math.floor((timeMultiplier * step) / time.seconds);
-      console.log(`time added is ${timeElapsed}`);
 
       const interval = setInterval(() => {
         const newAge = Math.round(+currentAge + timeElapsed);
         setTimeCounter(newAge); // set to seconds
         localStorage.setItem('currentAge', newAge);
-
-        console.log(`timeCounter / currentAge is ${timeCounter}`);
-        console.log(`timeElapsed is ${timeElapsed}`);
       }, 1000);
 
       localStorage.setItem('prevTime', currentTime);
