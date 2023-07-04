@@ -1,21 +1,36 @@
-const router = require('express').Router();
-const Mush = require('../db');
+const { Op } = require('sequelize');
 
-router.get('/:id', async (req, res, next) => {
+const router = require('express').Router();
+const Mush = require('../db/models/Mush');
+
+router.get('/', async (req, res, next) => {
   try {
+    console.log(`query is`);
+    console.log(req.query);
     const mush = await Mush.findOne({
       where: {
-        id: req.params.id,
+        minLat: {
+          [Op.lte]: +req.query.lat,
+          // [Op.lte]: 0,
+        },
+        maxLat: {
+          [Op.gte]: +req.query.lat,
+        },
+        minLong: {
+          [Op.lte]: +req.query.long,
+        },
+        maxLong: {
+          [Op.gte]: +req.query.long,
+        },
       },
-      include: Campus,
     });
 
-    if (student === null) {
+    if (mush === null) {
       res.status(404).send();
       return;
     }
 
-    res.send(student);
+    res.send(mush);
   } catch (error) {
     next(error);
   }

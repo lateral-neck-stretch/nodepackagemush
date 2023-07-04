@@ -1,18 +1,16 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import history from './history';
 import store from './store';
-import App from './components/App/App.js';
+import App from './components/App/App';
 
-const root = createRoot(document.getElementById('app'));
-root.render(
+ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <App />
     </Router>
-  </Provider>
+  </Provider>,
+  document.getElementById('app')
 );
