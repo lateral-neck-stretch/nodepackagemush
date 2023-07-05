@@ -95,6 +95,8 @@ function App(props) {
           className={style.InfoBox}
           timeCounter={timeCounter}
           sessionStarted={sessionStarted}
+          timeMultiplier={timeMultiplier}
+          setTimeMultiplier={setTimeMultiplier}
         />
       ) : (
         <></>

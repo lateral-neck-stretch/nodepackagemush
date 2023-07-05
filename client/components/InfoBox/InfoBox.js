@@ -4,7 +4,7 @@ import style from './InfoBox.module.css';
 import history from '../../history';
 
 function InfoBox(props) {
-  const { timeCounter } = props; // timeCounter coming in as seconds elapsed
+  const { timeCounter, timeMultiplier, setTimeMultiplier } = props; // timeCounter coming in as seconds elapsed
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -12,6 +12,8 @@ function InfoBox(props) {
 
   const [mushroom, setMushroom] = useState(null);
   const [mushroomName, setMushroomName] = useState(null);
+
+  const speedOptions = [1, 2, 5, 10, 100];
 
   // useEffect(() => {
   //   if (props.sessionStarted) {
@@ -24,10 +26,7 @@ function InfoBox(props) {
 
   useEffect(() => {
     const lsMushroom = JSON.parse(localStorage.getItem(`mushroom`));
-    console.log(JSON.parse(localStorage.getItem(`mushroom`)));
     setMushroom(lsMushroom);
-    console.log(`mushroom is`);
-    console.log(mushroom);
   }, []);
 
   // useEffect(() => {
@@ -40,9 +39,6 @@ function InfoBox(props) {
   // }, [mushroom]);
 
   if (mushroom !== null && mushroomName === null) {
-    console.log(`namechange`);
-    console.log(`mushroom is`);
-    console.log(mushroom);
     setMushroomName(mushroom.name);
   }
 
@@ -66,17 +62,51 @@ function InfoBox(props) {
     }
   });
 
+  // const SpeedOption = (text, value) => {
+  //   return <p>{text}</p>;
+  // };
+
+  const handleSpeedChange = (event) => {
+    console.log(event);
+    console.log(`button clicked ${event.target.value}`);
+    setTimeMultiplier(event.target.value);
+  };
+
   return (
     <div className={style.infoBox}>
       <p>
         mushroom_type: {mushroomName ? mushroomName : ''} <br />
         mushroom_age: {days} days {hours} hours {minutes} minutes {seconds}{' '}
         seconds <br />
-        time_to_maturity:
+        <br />
+        growth_speed:{' '}
+        {speedOptions.map((speed) => {
+          return (
+            <button
+              value={speed}
+              onClick={(event) => handleSpeedChange(event)}
+              id={`${speed}-speed-button`}
+            >
+              {speed}x
+            </button>
+          );
+        })}
+        {/* <button value={1} onClick={(event) => handleSpeedChange(event)}>
+          1x
+        </button>{' '}
+        <button value={2} onClick={(event) => handleSpeedChange(event)}>
+          2x
+        </button>{' '}
+        <button value={5} onClick={(event) => handleSpeedChange(event)}>
+          5x
+        </button>{' '}
+        <button value={10} onClick={(event) => handleSpeedChange(event)}>
+          10x
+        </button>{' '}
+        <button value={100} onClick={(event) => handleSpeedChange(event)}>
+          100x
+        </button> */}
       </p>
-      <div>
-        <p></p>
-      </div>
     </div>
   );
 }
