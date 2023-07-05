@@ -2,36 +2,36 @@ import anime from 'animejs/lib/anime.es.js';
 import React, { Component, useState, useRef, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import style from './Home.module.css';
-import { authenticate } from '../../store';
+
 import { connect } from 'react-redux';
 import history from '../../history';
 
 function Home(props) {
   const [playing, setPlaying] = useState(false);
   const animation = useRef(null);
-  const { handleSubmit } = props;
+  // const { handleSubmit } = props;
 
   /**
    * get location
    */
 
-  function savePosition(position) {
-    const long = position.coords.longitude;
-    window.localStorage.setItem('long', long);
+  // function savePosition(position) {
+  //   const long = position.coords.longitude;
+  //   window.localStorage.setItem('long', long);
 
-    const lat = position.coords.latitude;
-    window.localStorage.setItem('lat', lat);
+  //   const lat = position.coords.latitude;
+  //   window.localStorage.setItem('lat', lat);
 
-    console.log('COORDS :', long, lat);
-  }
+  //   console.log('COORDS :', long, lat);
+  // }
 
-  const errorCallback = (error) => {
-    window.localStorage.setItem('long', 90);
+  // const errorCallback = (error) => {
+  //   window.localStorage.setItem('long', 90);
 
-    window.localStorage.setItem('lat', 90);
+  //   window.localStorage.setItem('lat', 90);
 
-    console.log('ERROR', error);
-  };
+  //   console.log('ERROR', error);
+  // };
 
   /**
    * for play/pause functionality, will want to take out in the end
@@ -45,10 +45,11 @@ function Home(props) {
     animation.current = anime.timeline({
       autoplay: false,
       complete: function () {
-        console.log('done!');
-        navigator.geolocation.getCurrentPosition(savePosition, errorCallback);
+        // console.log('done!');
+        // navigator.geolocation.getCurrentPosition(savePosition, errorCallback);
         window.localStorage.setItem('token', 'token');
-        history.go('/');
+        props.setSessionStarted(true);
+        // history.go('/');
       },
     });
     animation.current
@@ -183,7 +184,7 @@ function Home(props) {
 
   return (
     <div className={style.container}>
-      <form className={style.button} onSubmit={handleSubmit}>
+      <form className={style.button} onSubmit={props.handleSubmit}>
         <button
           type='submit'
           className={style.start_text}
@@ -844,13 +845,18 @@ function Home(props) {
     </div>
   );
 }
-const mapDispatch = (dispatch) => {
-  return {
-    handleSubmit(evt) {
-      evt.preventDefault();
-      console.log('submitted!');
-      dispatch(authenticate());
-    },
-  };
+const mapDispatch = {
+  // authenticate,
+  // getMush,
 };
+
+// const mapDispatch = (dispatch) => {
+//   return {
+//     handleSubmit(evt) {
+//       evt.preventDefault();
+//       console.log('submitted!');
+//       dispatch(authenticate());
+//     },
+//   };
+// };
 export default withRouter(connect(null, mapDispatch)(Home));

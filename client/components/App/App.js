@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Mush from '../Mush/KingOyster';
 import Home from '../Home/Home';
@@ -7,22 +7,36 @@ import { me } from '../../store';
 import style from './App.module.css';
 import ResetButton from '../resetButton/ResetButton';
 import InfoBox from '../InfoBox/InfoBox';
+import { authenticate } from '../../store';
+import { getMush } from '../../store/mushroom';
 
 const time = {
   seconds: 1000,
   minutes: 60000,
 };
 
-const mushType = 'KingOyster'; // TO-DO : replace with mushtype from db call
+const testCoordinates = {
+  lat: 0,
+  long: 0,
+};
 
 /**
  * TO-DO : LOCATION
  */
 
-function App() {
+function App(props) {
   const init = !!window.localStorage.getItem('token');
+  const [sessionStarted, setSessionStarted] = useState(null);
   const [timeCounter, setTimeCounter] = useState(0);
   const [timeMultiplier, setTimeMultiplier] = useState(1);
+
+  const mushroom = useSelector((state) => state.mushroom || []);
+
+  useEffect(() => {
+    if (mushroom !== null) {
+      localStorage.setItem('mushroom', JSON.stringify(mushroom));
+    }
+  }, [mushroom]);
 
   useEffect(() => {
     function reset() {
@@ -35,7 +49,7 @@ function App() {
     if (init && !localStorage.startTime) {
       reset();
     }
-  }, []);
+  }, [init]);
 
   useEffect(() => {
     if (init && localStorage.startTime) {
@@ -58,7 +72,21 @@ function App() {
         clearInterval(interval);
       };
     }
-  }, [timeCounter, timeMultiplier]);
+  }, [init, timeCounter, timeMultiplier]);
+
+  // useEffect(() => {
+  //   setSessionStarted(init);
+  // }, [init]);
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+
+    props.authenticate();
+    props.getMush(testCoordinates);
+  }
+
+  // console.log(`mushroom`);
+  // console.log(mushroom);
 
   return (
     <div className={style.container}>
@@ -66,7 +94,7 @@ function App() {
         <InfoBox
           className={style.InfoBox}
           timeCounter={timeCounter}
-          mushType={mushType}
+          sessionStarted={sessionStarted}
         />
       ) : (
         <></>
@@ -75,15 +103,17 @@ function App() {
         {init ? (
           <Mush className={style.content} timeCounter={timeCounter} />
         ) : (
-          <Home className={style.content} />
+          <Home
+            className={style.content}
+            handleSubmit={handleSubmit}
+            setSessionStarted={setSessionStarted}
+          />
         )}
       </div>
       <ResetButton className={style.ResetButton} />
     </div>
   );
 }
-
-export default App;
 
 // const mapState = (state) => {
 //   return {
@@ -98,3 +128,10 @@ export default App;
 //     },
 //   };
 // };
+
+const mapDispatch = {
+  authenticate,
+  getMush,
+};
+
+export default withRouter(connect(null, mapDispatch)(App));

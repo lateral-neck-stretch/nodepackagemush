@@ -4,13 +4,49 @@ import style from './InfoBox.module.css';
 import history from '../../history';
 
 function InfoBox(props) {
-  const { timeCounter, mushType } = props; // timeCounter coming in as seconds elapsed
+  const { timeCounter } = props; // timeCounter coming in as seconds elapsed
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  React.useEffect(() => {
+  const [mushroom, setMushroom] = useState(null);
+  const [mushroomName, setMushroomName] = useState(null);
+
+  // useEffect(() => {
+  //   if (props.sessionStarted) {
+  //     console.log(`lsmushroom is`);
+  //     console.log(lsMushroom);
+  //     setMushroom(lsMushroom);
+  //   }
+  //   // setMushroomName(lsMushroom.name);
+  // }, [props.sessionStarted]);
+
+  useEffect(() => {
+    const lsMushroom = JSON.parse(localStorage.getItem(`mushroom`));
+    console.log(JSON.parse(localStorage.getItem(`mushroom`)));
+    setMushroom(lsMushroom);
+    console.log(`mushroom is`);
+    console.log(mushroom);
+  }, []);
+
+  // useEffect(() => {
+  //   if (mushroom !== null) {
+  //     console.log(`namechange`);
+  //     setMushroomName(mushroom.name);
+  //   } else {
+  //     console.log(`nonamechange`);
+  //   }
+  // }, [mushroom]);
+
+  if (mushroom !== null && mushroomName === null) {
+    console.log(`namechange`);
+    console.log(`mushroom is`);
+    console.log(mushroom);
+    setMushroomName(mushroom.name);
+  }
+
+  useEffect(() => {
     if (timeCounter) {
       let numSecs = timeCounter;
 
@@ -33,7 +69,7 @@ function InfoBox(props) {
   return (
     <div className={style.infoBox}>
       <p>
-        mushroom_type: {mushType} <br />
+        mushroom_type: {mushroomName ? mushroomName : ''} <br />
         mushroom_age: {days} days {hours} hours {minutes} minutes {seconds}{' '}
         seconds <br />
         time_to_maturity:

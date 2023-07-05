@@ -1,7 +1,7 @@
 const router = require('express').Router();
 module.exports = router;
 
-router.use('/mush', require('./mush'));
+router.use('/mushrooms', require('./mush'));
 
 router.use((req, res, next) => {
   const error = new Error('Not Found');

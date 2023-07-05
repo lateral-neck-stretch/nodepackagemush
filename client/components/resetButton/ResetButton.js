@@ -9,6 +9,7 @@ function ResetButton(props) {
     window.localStorage.removeItem('startTime');
     window.localStorage.removeItem('currentAge');
     window.localStorage.removeItem('prevTime');
+    window.localStorage.removeItem('mushroom');
 
     history.go('/');
     console.log('removed');

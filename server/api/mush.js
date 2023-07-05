@@ -11,7 +11,6 @@ router.get('/', async (req, res, next) => {
       where: {
         minLat: {
           [Op.lte]: +req.query.lat,
-          // [Op.lte]: 0,
         },
         maxLat: {
           [Op.gte]: +req.query.lat,
