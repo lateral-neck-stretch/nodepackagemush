@@ -28,7 +28,7 @@ function App(props) {
   const init = !!window.localStorage.getItem('token');
   const [sessionStarted, setSessionStarted] = useState(null);
   const [timeCounter, setTimeCounter] = useState(0);
-  const [timeMultiplier, setTimeMultiplier] = useState(1);
+  const [timeMultiplierOption, setTimeMultiplierOption] = useState(1);
 
   const mushroom = useSelector((state) => state.mushroom || []);
 
@@ -39,12 +39,24 @@ function App(props) {
   }, [mushroom]);
 
   useEffect(() => {
+    if (localStorage.timeMultiplier) {
+      const timeMultiplier = localStorage.getItem('timeMultiplier');
+      setTimeMultiplierOption(timeMultiplier);
+    }
+  });
+
+  // useEffect(() => {
+  //   localStorage.setItem('timeMultiplier', timeMultiplierOption);
+  // }, [timeMultiplierOption]);
+
+  useEffect(() => {
     function reset() {
       const startTime = +new Date();
       const prevTime = startTime - 1000;
       localStorage.setItem('startTime', startTime);
       localStorage.setItem('prevTime', prevTime);
       localStorage.setItem('currentAge', timeCounter);
+      localStorage.setItem('timeMultiplier', timeMultiplierOption);
     }
     if (init && !localStorage.startTime) {
       reset();
@@ -56,13 +68,14 @@ function App(props) {
       const currentTime = +new Date();
       const currentAge = localStorage.getItem('currentAge');
       const prevTime = localStorage.getItem(`prevTime`);
+      const timeMultiplier = localStorage.getItem(`timeMultiplier`);
       const step = currentTime - prevTime;
 
       const timeElapsed = Math.floor((timeMultiplier * step) / time.seconds);
 
       const interval = setInterval(() => {
         const newAge = Math.round(+currentAge + timeElapsed);
-        setTimeCounter(newAge); // set to seconds
+        setTimeCounter(newAge);
         localStorage.setItem('currentAge', newAge);
       }, 1000);
 
@@ -72,11 +85,7 @@ function App(props) {
         clearInterval(interval);
       };
     }
-  }, [init, timeCounter, timeMultiplier]);
-
-  // useEffect(() => {
-  //   setSessionStarted(init);
-  // }, [init]);
+  }, [init, timeCounter]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -85,9 +94,6 @@ function App(props) {
     props.getMush(testCoordinates);
   }
 
-  // console.log(`mushroom`);
-  // console.log(mushroom);
-
   return (
     <div className={style.container}>
       {init ? (
@@ -95,8 +101,8 @@ function App(props) {
           className={style.InfoBox}
           timeCounter={timeCounter}
           sessionStarted={sessionStarted}
-          timeMultiplier={timeMultiplier}
-          setTimeMultiplier={setTimeMultiplier}
+          timeMultiplierOption={timeMultiplierOption}
+          setTimeMultiplierOption={setTimeMultiplierOption}
         />
       ) : (
         <></>

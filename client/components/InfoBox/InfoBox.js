@@ -4,12 +4,12 @@ import style from './InfoBox.module.css';
 import history from '../../history';
 
 function InfoBox(props) {
-  const { timeCounter, timeMultiplier, setTimeMultiplier } = props; // timeCounter coming in as seconds elapsed
+  const { timeCounter, timeMultiplierOption, setTimeMultiplierOption } = props; // timeCounter coming in as seconds elapsed
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-
+  const [currentSpeed, setCurrentSpeed] = useState(null);
   const [mushroom, setMushroom] = useState(null);
   const [mushroomName, setMushroomName] = useState(null);
 
@@ -29,17 +29,10 @@ function InfoBox(props) {
     setMushroom(lsMushroom);
   }, []);
 
-  // useEffect(() => {
-  //   if (mushroom !== null) {
-  //     console.log(`namechange`);
-  //     setMushroomName(mushroom.name);
-  //   } else {
-  //     console.log(`nonamechange`);
-  //   }
-  // }, [mushroom]);
-
   if (mushroom !== null && mushroomName === null) {
     setMushroomName(mushroom.name);
+    console.log(`setting mushroom name`);
+    console.log(mushroom.name);
   }
 
   useEffect(() => {
@@ -62,14 +55,15 @@ function InfoBox(props) {
     }
   });
 
-  // const SpeedOption = (text, value) => {
-  //   return <p>{text}</p>;
-  // };
+  useEffect(() => {
+    const timeMultiplier = localStorage.getItem('timeMultiplier');
+    setCurrentSpeed(timeMultiplier);
+  }, []);
 
   const handleSpeedChange = (event) => {
-    console.log(event);
-    console.log(`button clicked ${event.target.value}`);
-    setTimeMultiplier(event.target.value);
+    setTimeMultiplierOption(event.target.value);
+    localStorage.setItem('timeMultiplier', event.target.value);
+    setCurrentSpeed(event.target.value);
   };
 
   return (
@@ -78,34 +72,21 @@ function InfoBox(props) {
         mushroom_type: {mushroomName ? mushroomName : ''} <br />
         mushroom_age: {days} days {hours} hours {minutes} minutes {seconds}{' '}
         seconds <br />
-        <br />
         growth_speed:{' '}
         {speedOptions.map((speed) => {
           return (
             <button
               value={speed}
               onClick={(event) => handleSpeedChange(event)}
-              id={`${speed}-speed-button`}
+              key={`${speed}-speed-button`}
+              className={
+                speed == currentSpeed ? style.selectedSpeedOption : null
+              }
             >
               {speed}x
             </button>
           );
         })}
-        {/* <button value={1} onClick={(event) => handleSpeedChange(event)}>
-          1x
-        </button>{' '}
-        <button value={2} onClick={(event) => handleSpeedChange(event)}>
-          2x
-        </button>{' '}
-        <button value={5} onClick={(event) => handleSpeedChange(event)}>
-          5x
-        </button>{' '}
-        <button value={10} onClick={(event) => handleSpeedChange(event)}>
-          10x
-        </button>{' '}
-        <button value={100} onClick={(event) => handleSpeedChange(event)}>
-          100x
-        </button> */}
       </p>
     </div>
   );
