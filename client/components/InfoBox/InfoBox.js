@@ -15,15 +15,6 @@ function InfoBox(props) {
 
   const speedOptions = [1, 2, 5, 10, 100];
 
-  // useEffect(() => {
-  //   if (props.sessionStarted) {
-  //     console.log(`lsmushroom is`);
-  //     console.log(lsMushroom);
-  //     setMushroom(lsMushroom);
-  //   }
-  //   // setMushroomName(lsMushroom.name);
-  // }, [props.sessionStarted]);
-
   useEffect(() => {
     const lsMushroom = JSON.parse(localStorage.getItem(`mushroom`));
     setMushroom(lsMushroom);

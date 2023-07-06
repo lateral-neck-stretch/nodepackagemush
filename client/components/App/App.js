@@ -20,15 +20,12 @@ const testCoordinates = {
   long: 0,
 };
 
-/**
- * TO-DO : LOCATION
- */
-
 function App(props) {
   const init = !!window.localStorage.getItem('token');
   const [sessionStarted, setSessionStarted] = useState(null);
   const [timeCounter, setTimeCounter] = useState(0);
   const [timeMultiplierOption, setTimeMultiplierOption] = useState(1);
+  const [coordinates, setCoordinates] = useState(null);
 
   const mushroom = useSelector((state) => state.mushroom || []);
 
@@ -87,11 +84,65 @@ function App(props) {
     }
   }, [init, timeCounter]);
 
-  function handleSubmit(evt) {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-
     props.authenticate();
-    props.getMush(testCoordinates);
+
+    const getCurrentPosition = () =>
+      new Promise((resolve, error) =>
+        navigator.geolocation.getCurrentPosition(resolve, error)
+      );
+
+    try {
+      const position = await getCurrentPosition();
+      const latitude = position.coords.latitude || 0;
+      const longitude = position.coords.longitude || 0;
+
+      const userCoordinates = {
+        lat: latitude,
+        long: longitude,
+      };
+
+      props.getMush(userCoordinates);
+    } catch (error) {
+      console.error(error);
+      props.getMush(testCoordinates);
+    }
+
+    // getCurrentPosition().then((location) => props.getMush(location));
+    // props.getMush(currentPosition);
+  };
+
+  function getCurrentPosition() {
+    function success(position) {
+      const latitude = position.coords.latitude || 0;
+      const longitude = position.coords.longitude || 0;
+
+      const userCoordinates = {
+        lat: latitude,
+        long: longitude,
+      };
+
+      setCoordinates(userCoordinates);
+      return coordinates;
+    }
+
+    function error(error) {
+      alert('Unable to retrieve your location');
+      console.error(error);
+
+      setCoordinates(testCoordinates);
+      return coordinates;
+    }
+
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser');
+
+      setCoordinates(testCoordinates);
+      return coordinates;
+    } else {
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
   }
 
   return (
@@ -115,6 +166,7 @@ function App(props) {
             className={style.content}
             handleSubmit={handleSubmit}
             setSessionStarted={setSessionStarted}
+            setCoordinates={setCoordinates}
           />
         )}
       </div>
