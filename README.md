@@ -23,7 +23,7 @@ To run this application on your local device, follow these setup instructions:
 - NODE.JS : the Node.js package can be downloaded using Homebrew with `brew install node`. Further instructions for different operating systems and methods can be found at (https://nodejs.dev/en/download/package-manager/).
 - POSTGRESQL : on macOS, the PostgreSQL package can be installed using Homebrew with `brew install postgresql@14`. Further instructions can be found at (https://www.postgresql.org/download/)
 
-- Clone this repo onto an empty directory on your local machine with `git clone git@github.com:lateral-neck-stretch/oit-mentorship-db.git`
+- Clone this repo onto an empty directory on your local machine with `git clone git@github.com:lateral-neck-stretch/nodepackagemush.git`
 
 - Once the repo has been cloned, install the necessary dependencies with `npm install`
 
